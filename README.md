@@ -19,3 +19,8 @@ Entorno de desarrollo
 ## Memoria
 
 *** Puedes documentar aquí la memoria de tu prueba ***
+
+Removiendo redux-sagas e implementando redux-thunk
+    npm i redux-thunk 
+    store/ dir with new arqui
+ 
