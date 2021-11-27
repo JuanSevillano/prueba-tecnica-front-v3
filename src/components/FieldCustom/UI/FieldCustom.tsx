@@ -17,7 +17,7 @@ ${({ theme }) => `
 
 const FieldCustom = (props: any) => {
 	return (
-		<StyledTextField props={props} />
+		<StyledTextField {...props} />
 	)
 }
 

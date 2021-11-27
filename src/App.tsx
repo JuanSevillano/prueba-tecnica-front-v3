@@ -1,28 +1,25 @@
 import React from "react";
-import { Paper, StylesProvider, ThemeProvider as MuiThemeProvider } from "@material-ui/core";
+import { NoSsr, ThemeProvider as MuiThemeProvider } from "@material-ui/core";
 import Theme from './styles/Theme';
-import styled, { ThemeProvider } from "styled-components";
+import { ThemeProvider } from "styled-components";
+import Login from "pages/Login/Login";
+import AppLayout from "hoc/AppLayout";
 
-
-
-const StyledPaper = styled(Paper)`
-${({ theme }) => `
-  background-color: ${theme.palette.primary.main};
-  padding: 20px;
-`}`
 
 const App = () => {
   return (
-    <StylesProvider injectFirst>
+    <NoSsr>
       <MuiThemeProvider theme={Theme}>
         <ThemeProvider theme={Theme}>
-          <div>
-            <p>Prueba técnica de LaLiga</p>
-            <StyledPaper />
-          </div>
+          <AppLayout>
+
+            <Login />
+
+          </AppLayout>
+
         </ThemeProvider>
       </MuiThemeProvider>
-    </StylesProvider>
+    </NoSsr>
   );
 };
 

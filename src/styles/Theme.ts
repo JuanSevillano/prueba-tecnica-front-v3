@@ -2,14 +2,28 @@ import { createTheme, responsiveFontSizes, Theme, ThemeOptions } from "@material
 
 const themeOptions: ThemeOptions = {
     palette: {
-        primary: {
-            main: '#101010'
+        type: 'dark'
+    },
+    overrides: {
+        MuiPaper: {
+            rounded: {
+                borderRadius: 0
+            }
+        },
+        MuiTypography: {
+            colorPrimary: {
+                fontSize: '2rem',
+                color: 'white',
+                fontWeight: 'bold'
+            }
+        },
+        MuiTextField: {
+
         }
     }
 }
 
 
 let theme: Theme = createTheme(themeOptions);
-theme = responsiveFontSizes(theme);
 
 export default theme; 

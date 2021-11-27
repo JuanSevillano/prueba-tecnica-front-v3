@@ -7,6 +7,11 @@ export const LOAD_PREV_SESSION = 'LOAD_PREV_SESSION'
 // localStorage key for User Session 
 export const USER_SESSION = 'USER_SESSION'
 
+export type Creds = {
+    email: string;
+    password: string;
+}
+
 export type User = {
     id: number;
     email: string;
