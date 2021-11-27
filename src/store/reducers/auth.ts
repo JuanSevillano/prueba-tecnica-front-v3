@@ -1,4 +1,4 @@
-import { AuthDispatchActions, LoadPrevSession, SignInFailed, SignInStart, SignInSuccess, SIGN_IN, SIGN_IN_FAILED, SIGN_IN_SUCCESS, User, USER_SESSION } from "store/types/authTypes";
+import { AuthDispatchActions, LoadPrevSession, LOAD_PREV_SESSION, SignInFailed, SignInStart, SignInSuccess, SIGN_IN, SIGN_IN_FAILED, SIGN_IN_SUCCESS, User, USER_SESSION } from "store/types/authTypes";
 import { getPersistance, savePersistance } from "utils/persistance";
 
 interface AuthState {
@@ -68,6 +68,7 @@ const authReducer = (state: AuthState = initialState, action: AuthDispatchAction
         case SIGN_IN: return signIngStart(state, action);
         case SIGN_IN_FAILED: return signInFailed(state, action);
         case SIGN_IN_SUCCESS: return signInSuccess(state, action);
+        case LOAD_PREV_SESSION: return loadPrevSession(state, action);
         default: return state;
     }
 }

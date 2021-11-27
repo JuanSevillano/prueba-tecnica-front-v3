@@ -22,5 +22,19 @@ Entorno de desarrollo
 
 Removiendo redux-sagas e implementando redux-thunk
     npm i redux-thunk 
-    store/ dir with new arqui
+
+Debido a la lógica de redux + thunk se agrega estructura 
+    store/
+        types => actionTypes 
+        action => actions and thunk implementations 
+        reducers => state reduces 
+
+Se agregan librerias para el manejo de UI y Styling:
+     styled-components: "^5.1.1" => Requisito para la implemetación de stilos en el proyecto
+     @material-ui/core: "^4.12.3" => Como Design system 
+	 @material-ui/icons: "^4.11.2", => SVG Icons  
+	 @mui/styled-engine: "^5.2.0", => Styled engine para integración con styled-components 
+     
+
+
  
