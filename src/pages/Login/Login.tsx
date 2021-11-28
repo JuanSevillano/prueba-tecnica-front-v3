@@ -33,6 +33,7 @@ const initialState: Creds = {
 
 const StyledLogin = styled(Box)`
 ${({ theme }) => `
+	position: relative; 
 	display: flex;
 	justity-content: center; 
 	align-items: center;
