@@ -1,7 +1,9 @@
 import { Box, Button, darken, Typography } from '@material-ui/core';
-import FieldCustom from 'components/FieldCustom/UI/FieldCustom';
+import Spinner from 'components/Spinner';
+import FieldCustom from 'components/UI/FieldCustom';
 import React, { FC, useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { AppState } from 'store';
 import { SignIn } from 'store/actions/auth';
 import { Creds } from 'store/types/authTypes';
 import styled from 'styled-components';
@@ -69,6 +71,9 @@ const Login: FC<{}> = () => {
 	const dispatch = useDispatch()
 	const [creds, setCreds] = useState<Creds>(initialState);
 
+	const { error, isFetching }: any = useSelector<AppState>(state => state.auth);
+
+
 	const submitHandler = event => {
 
 		event.preventDefault();
@@ -89,6 +94,7 @@ const Login: FC<{}> = () => {
 
 	return (
 		<StyledLogin>
+			<Spinner loading={isFetching} />
 			<form onSubmit={submitHandler}>
 				<section></section>
 				<img src={whiteLogo} alt='logo' />
@@ -97,7 +103,7 @@ const Login: FC<{}> = () => {
 					<FieldCustom
 						required
 						label="correo"
-						error={creds.error}
+						error={error ? true : false}
 						type="email"
 						onChange={e => {
 							const { value } = e.target;
@@ -111,7 +117,8 @@ const Login: FC<{}> = () => {
 						required
 						type="password"
 						label="contraseña"
-						error={creds.error}
+						error={error ? true : false}
+						helperText={error}
 						onChange={e => {
 							const { value } = e.target;
 							setCreds(prev => ({

@@ -42,6 +42,7 @@ const signInSuccess = (state: AuthState, action: SignInSuccess): AuthState => {
 const signInFailed = (state: AuthState, action: SignInFailed): AuthState => {
 
     const { error } = action.payload;
+
     const updatedState: AuthState = {
         ...state,
         isFetching: false,
@@ -56,7 +57,6 @@ const loadPrevSession = (state: AuthState, action: LoadPrevSession): AuthState =
     const prevState: AuthState = getPersistance(USER_SESSION);
     if (prevState) return prevState
 
-    debugger
     return state
 }
 

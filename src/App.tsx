@@ -25,8 +25,6 @@ const App: FC<{}> = () => {
       console.log(user)
       console.log(isAuthenticated)
     }
-    debugger
-
   }, [user, isAuthenticated])
 
   return (

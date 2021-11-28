@@ -14,34 +14,24 @@ export const LoadPrevSession = () => ({
     type: LOAD_PREV_SESSION
 })
 export const SignIn = (creds: Creds) => async (dispatch: Dispatch) => {
+    try {
 
-    // @ts-ignore
-    dispatch(SignInStart());
-    const { email, password } = creds;
-    const body = {
-        email,
-        password
-    };
+        dispatch(SignInStart());
 
+        const { email, password } = creds;
+        const body = { email, password };
 
-    const { data } = await api.post('login/', body);
-
-    if (data) {
+        const { data } = await api.post('login/', body);
         const { token } = data;
-        const user: User = {
-            token,
-            email
-        }
+        const user: User = { token, email };
         dispatch(SignInSuccess(user));
-        debugger
-        return
+
+
+    } catch (error) {
+        // @ts-ignore
+        const message = error.response.data.error;
+        dispatch(SignInFailed(message));
     }
-
-    // @ts-ignore
-    const message = data.response.data.error;
-    dispatch(SignInFailed(message));
-    debugger
-
 }
 
 const SignInStart = () => ({

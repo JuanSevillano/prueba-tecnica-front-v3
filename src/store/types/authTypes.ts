@@ -10,7 +10,6 @@ export const USER_SESSION = 'USER_SESSION'
 export type Creds = {
     email: string;
     password: string;
-    error?: string;
 }
 
 export type User = {
