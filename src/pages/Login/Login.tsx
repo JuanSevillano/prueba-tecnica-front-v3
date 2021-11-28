@@ -1,6 +1,8 @@
-import { Box, Button, darken, Paper, Typography } from '@material-ui/core';
+import { Box, Button, darken, Typography } from '@material-ui/core';
 import FieldCustom from 'components/FieldCustom/UI/FieldCustom';
 import React, { FC, useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { SignIn } from 'store/actions/auth';
 import { Creds } from 'store/types/authTypes';
 import styled from 'styled-components';
 
@@ -58,36 +60,73 @@ ${({ theme }) => `
 			transform: translateY(-40%);
 			padding: 20px; 
 		}
-		.MuiBox-root{
-			.MuiFormControl-root {
-				margin: 10px 0px;
-			}
-		}
 	}	
 `}`;
 
 
-const Login: FC<{}> = ({ }) => {
+const Login: FC<{}> = () => {
 
+	const dispatch = useDispatch()
 	const [creds, setCreds] = useState<Creds>(initialState);
 
+	const submitHandler = event => {
 
+		event.preventDefault();
+		const validEmail = creds.email !== initialState.email;
+		const validPass = creds.password !== initialState.password;
 
+		if (validEmail && validPass) {
+			dispatch(SignIn(creds));
+			debugger
+		} else {
+			setCreds(prev => ({
+				...prev,
+				error: !validEmail ? 'Email no valido' : 'Contraseña no valida'
+			}))
+			debugger
+		}
 
+	}
 
 	return (
 		<StyledLogin>
-			<form onSubmit={(e) => console.log('submitted')}>
+			<form onSubmit={submitHandler}>
 				<section></section>
 				<img src={whiteLogo} alt='logo' />
 				<Box>
 					<Typography color='primary' variant='h1'>{mockupData.title}</Typography>
 					<FieldCustom
+						required
 						label="correo"
-						onChange={e => console.log(e.target.value)}
+						error={creds.error}
+						type="email"
+						onChange={e => {
+							const { value } = e.target;
+							setCreds(prev => ({
+								...prev,
+								email: value
+							}))
+						}}
 					/>
-					<FieldCustom />
-					<Button variant='contained'>{mockupData.buttonText}</Button>
+					<FieldCustom
+						required
+						type="password"
+						label="contraseña"
+						error={creds.error}
+						onChange={e => {
+							const { value } = e.target;
+							setCreds(prev => ({
+								...prev,
+								password: value
+							}))
+						}}
+					/>
+					<Button
+						fullWidth
+						type='submit'
+						variant='contained'>
+						{mockupData.buttonText}
+					</Button>
 				</Box>
 			</form>
 		</StyledLogin>

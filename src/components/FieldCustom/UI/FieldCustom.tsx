@@ -7,11 +7,11 @@ const StyledTextField = styled((props) => (
 		{...props}
 		fullWidth
 		variant="outlined"
+		square="true"
 	/>
 ))`
 ${({ theme }) => `
-	border-color: ${theme.palette.primary.main};
-	margin: 10px 0px; 
+	
 `}`;
 
 

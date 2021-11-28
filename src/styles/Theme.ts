@@ -1,4 +1,4 @@
-import { createTheme, responsiveFontSizes, Theme, ThemeOptions } from "@material-ui/core";
+import { createTheme, Theme, ThemeOptions } from "@material-ui/core";
 
 const themeOptions: ThemeOptions = {
     palette: {
@@ -17,8 +17,21 @@ const themeOptions: ThemeOptions = {
                 fontWeight: 'bold'
             }
         },
-        MuiTextField: {
-
+        MuiOutlinedInput: {
+            root: {
+                borderRadius: 0,
+                borderColor: 'white',
+                color: 'white',
+                margin: '10px 0px',
+                "&$focused": {
+                    "color": "white"
+                }
+            }
+        },
+        MuiFormLabel: {
+            root: {
+                color: 'white'
+            }
         }
     }
 }
