@@ -14,10 +14,10 @@ export type Creds = {
 }
 
 export type User = {
-    id: number;
+    token: string;
     email: string;
-    first_name: string;
-    last_name: string;
+    first_name?: string;
+    last_name?: string;
 }
 
 export interface SignInStart {

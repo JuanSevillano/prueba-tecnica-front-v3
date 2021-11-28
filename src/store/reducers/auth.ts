@@ -1,8 +1,7 @@
 import { AuthDispatchActions, LoadPrevSession, LOAD_PREV_SESSION, SignInFailed, SignInStart, SignInSuccess, SIGN_IN, SIGN_IN_FAILED, SIGN_IN_SUCCESS, User, USER_SESSION } from "store/types/authTypes";
 import { getPersistance, savePersistance } from "utils/persistance";
 
-interface AuthState {
-    token: string
+export interface AuthState {
     user: User
     isFetching: boolean
     isAuthenticated: boolean
@@ -10,7 +9,6 @@ interface AuthState {
 }
 
 const initialState: AuthState = {
-    token: '',
     user: {} as User,
     isFetching: false,
     isAuthenticated: false,
@@ -44,7 +42,6 @@ const signInSuccess = (state: AuthState, action: SignInSuccess): AuthState => {
 const signInFailed = (state: AuthState, action: SignInFailed): AuthState => {
 
     const { error } = action.payload;
-
     const updatedState: AuthState = {
         ...state,
         isFetching: false,
@@ -57,8 +54,9 @@ const signInFailed = (state: AuthState, action: SignInFailed): AuthState => {
 const loadPrevSession = (state: AuthState, action: LoadPrevSession): AuthState => {
 
     const prevState: AuthState = getPersistance(USER_SESSION);
-    if (prevState.token) return prevState
+    if (prevState) return prevState
 
+    debugger
     return state
 }
 

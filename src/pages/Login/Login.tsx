@@ -75,16 +75,15 @@ const Login: FC<{}> = () => {
 		const validEmail = creds.email !== initialState.email;
 		const validPass = creds.password !== initialState.password;
 
-		if (validEmail && validPass) {
-			dispatch(SignIn(creds));
-			debugger
-		} else {
+		if (!validEmail && !validPass) {
 			setCreds(prev => ({
 				...prev,
 				error: !validEmail ? 'Email no valido' : 'Contraseña no valida'
 			}))
-			debugger
+			return
 		}
+
+		dispatch(SignIn(creds));
 
 	}
 
