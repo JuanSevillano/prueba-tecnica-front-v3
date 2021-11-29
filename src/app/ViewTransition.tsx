@@ -1,9 +1,24 @@
+import { Box } from "@material-ui/core";
 import Login from "pages/Login";
 import React, { FC } from "react";
 import { Route, Switch } from "react-router-dom";
 import { useTransition, animated as a, config } from "react-spring";
+import styled from "styled-components";
 import useRouter from "utils/useRouter";
 import { RouteI } from "./Routes";
+
+
+const StyledView = styled(Box)`
+${({ theme }) => `
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        .wrapper {
+        display: flex;
+        width: 100%; 
+        height: 100%;
+    }
+`}`
 
 interface ViewTransitionI {
     routes: Array<RouteI>,
@@ -23,10 +38,10 @@ const ViewTransition: FC<ViewTransitionI> = ({ routes, isAuth }) => {
     });
 
     const views = transitions.map(({ item, props, key }) => (
-        <a.div key={key} style={props}>
+        <a.div className="wrapper" key={key} style={props}>
             <Switch location={item}>
                 {
-                    routes.map(page => (
+                    isAuth && routes.map(page => (
                         <Route
                             exact
                             key={page.url}
@@ -36,13 +51,13 @@ const ViewTransition: FC<ViewTransitionI> = ({ routes, isAuth }) => {
                     ))
                 }
                 {
-                    !isAuth ? <Route path='/' exact component={Login} /> : null
+                    !isAuth && <Login />
                 }
             </Switch>
         </a.div>
     ));
 
-    return <>{views}</>
+    return <StyledView>{views}</StyledView>
 }
 
 
