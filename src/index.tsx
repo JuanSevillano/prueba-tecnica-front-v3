@@ -8,11 +8,12 @@ import Theme from './styles/Theme';
 
 import './index.css'
 import Spinner from "components/Spinner";
+import { BrowserRouter } from "react-router-dom";
 
 
 const App = lazy(() =>
   Promise.all([
-    import('./App'),
+    import('./app/App'),
     new Promise(resolve => setTimeout(resolve, 1200))
   ]).then(([moduleExports]) => moduleExports));
 
@@ -24,7 +25,9 @@ ReactDOM.render(
         <MuiThemeProvider theme={Theme}>
           <ThemeProvider theme={Theme}>
             <Suspense fallback={<Spinner loading />}>
-              <App />
+              <BrowserRouter>
+                <App />
+              </BrowserRouter>
             </Suspense>
           </ThemeProvider>
         </MuiThemeProvider>

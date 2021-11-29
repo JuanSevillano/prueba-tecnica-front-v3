@@ -8,7 +8,7 @@ import { SignIn } from 'store/actions/auth';
 import { Creds } from 'store/types/authTypes';
 import styled from 'styled-components';
 
-import whiteLogo from '../../assets/white_logo.svg';
+import whiteLogo from '../assets/white_logo.svg';
 
 interface LoginI {
 	title: string
