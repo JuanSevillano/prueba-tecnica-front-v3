@@ -4,6 +4,7 @@ export const LOAD_USER_LIST = 'LOAD_USER_LIST';
 export const LOAD_USER_LIST_FAILED = 'LOAD_USER_LIST_FAILED';
 export const LOAD_USER_LIST_SUCCESS = 'LOAD_USER_LIST_SUCCESS';
 
+
 export interface LoadUsers {
     type: typeof LOAD_USER_LIST
 }

@@ -1,5 +1,5 @@
-import Login from "pages/Login";
 import { ComponentType } from "react";
+import Login from "pages/Login";
 import UserList from "pages/UserList";
 
 export interface RouteI {
