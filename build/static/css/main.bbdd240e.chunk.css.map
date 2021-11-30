@@ -1,0 +1,1 @@
+{"version":3,"sources":["index.css"],"names":[],"mappings":"AAAA,UAEI,SAAU,CACV,QAAS,CACT,WAAY,CACZ,YACJ,CAEA,MACI,UAAW,CACX,WACJ","file":"main.bbdd240e.chunk.css","sourcesContent":["html,\r\nbody {\r\n    padding: 0;\r\n    margin: 0;\r\n    width: 100vw;\r\n    height: 100vh;\r\n}\r\n\r\n#root {\r\n    width: 100%;\r\n    height: 100%;\r\n}\r\n"]}
