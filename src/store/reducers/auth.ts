@@ -1,5 +1,5 @@
-import { AuthDispatchActions, LoadPrevSession, LOAD_PREV_SESSION, SignInFailed, SignInStart, SignInSuccess, SIGN_IN, SIGN_IN_FAILED, SIGN_IN_SUCCESS, User, USER_SESSION } from "store/types/authTypes";
-import { getPersistance, savePersistance } from "utils/persistance";
+import { AuthDispatchActions, LoadPrevSession, LOAD_PREV_SESSION, LogOut, LOG_OUT, SignInFailed, SignInStart, SignInSuccess, SIGN_IN, SIGN_IN_FAILED, SIGN_IN_SUCCESS, User, USER_SESSION } from "store/types/authTypes";
+import { getPersistance, removePersistance, savePersistance } from "utils/persistance";
 
 export interface AuthState {
     user: User
@@ -61,8 +61,17 @@ const loadPrevSession = (state: AuthState, action: LoadPrevSession): AuthState =
 }
 
 
+const logOut = (state: AuthState, action: LogOut): AuthState => {
+
+    const updatedState: AuthState = { ...initialState };
+    removePersistance(USER_SESSION);
+
+    return updatedState
+}
+
 const authReducer = (state: AuthState = initialState, action: AuthDispatchActions): AuthState => {
     switch (action.type) {
+        case LOG_OUT: return logOut(state, action);
         case SIGN_IN: return signIngStart(state, action);
         case SIGN_IN_FAILED: return signInFailed(state, action);
         case SIGN_IN_SUCCESS: return signInSuccess(state, action);

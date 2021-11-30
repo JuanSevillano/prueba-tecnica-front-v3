@@ -4,7 +4,10 @@ import { createTheme, Theme, ThemeOptions } from "@material-ui/core";
 
 const themeOptions: ThemeOptions = {
     palette: {
-        type: 'dark'
+        type: 'dark',
+        primary: {
+            main: '#003472'
+        }
     },
     overrides: {
         MuiPaper: {
@@ -16,7 +19,8 @@ const themeOptions: ThemeOptions = {
             colorPrimary: {
                 fontSize: '2rem',
                 color: 'white',
-                fontWeight: 'bold'
+                fontWeight: 'bold',
+                textAlign: 'center'
             }
         },
         MuiOutlinedInput: {

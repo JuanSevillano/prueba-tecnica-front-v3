@@ -2,6 +2,8 @@ export const SIGN_IN = 'SIGN_IN'
 export const SIGN_IN_SUCCESS = 'SIGN_IN_SUCCESS'
 export const SIGN_IN_FAILED = 'SIGN_IN_FAILED'
 
+export const LOG_OUT = 'LOG_OUT'
+
 export const LOAD_PREV_SESSION = 'LOAD_PREV_SESSION'
 
 // localStorage key for User Session 
@@ -38,9 +40,14 @@ export interface LoadPrevSession {
     type: typeof LOAD_PREV_SESSION
 }
 
+export interface LogOut {
+    type: typeof LOG_OUT
+}
+
 export type AuthDispatchActions =
     SignInStart |
     SignInSuccess |
     SignInFailed |
-    LoadPrevSession
+    LoadPrevSession |
+    LogOut
 

@@ -3,6 +3,7 @@ import api from "store/axiosConfig";
 import {
     Creds,
     LOAD_PREV_SESSION,
+    LOG_OUT,
     SIGN_IN,
     SIGN_IN_FAILED,
     SIGN_IN_SUCCESS,
@@ -23,7 +24,15 @@ export const SignIn = (creds: Creds) => async (dispatch: Dispatch) => {
 
         const { data } = await api.post('login/', body);
         const { token } = data;
-        const user: User = { token, email };
+        // Guessing user id, due to there's not endpoint for /users/token  
+        const id: number = 4;
+
+
+        const profile = await api.get(`users/${id}`);
+        const user: User = {
+            token,
+            ...profile.data
+        };
         dispatch(SignInSuccess(user));
 
 
@@ -46,4 +55,9 @@ const SignInFailed = (error: string) => ({
 const SignInSuccess = (user: User) => ({
     type: SIGN_IN_SUCCESS,
     payload: { user: user }
+})
+
+
+export const LogOut = () => ({
+    type: LOG_OUT
 })

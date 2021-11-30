@@ -1,6 +1,6 @@
 import { Box, Button, darken, Typography } from '@material-ui/core';
 import Spinner from 'components/Spinner';
-import FieldCustom from 'components/UI/FieldCustom';
+import FieldCustom from 'components/FieldCustom';
 import React, { FC, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { AppState } from 'store';
@@ -48,6 +48,7 @@ ${({ theme }) => `
 		flex-wrap: wrap; 
 		align-items:center;
 		flex-direction: column;
+		padding: 0 15px;
 		background-color: ${darken(theme.palette.background.default, 0.5)};
 		section {
 			justify-self: flex-start;

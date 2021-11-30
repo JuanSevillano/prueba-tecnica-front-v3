@@ -1,5 +1,11 @@
+
 import { Box } from "@material-ui/core";
-import React, { FC } from "react";
+import Nav from "components/Nav";
+import React, { FC, useState } from "react";
+import { useSelector } from "react-redux";
+
+import { AppState } from "store";
+
 import styled from "styled-components";
 
 const StyledLayout = styled(Box)`
@@ -10,10 +16,25 @@ ${({ theme }) => `
 `}`;
 
 const AppLayout: FC<{}> = ({ children }) => {
+
+
+    const { user, isAuthenticated }: any = useSelector<AppState>(state => state.auth);
+
+
+    const [open, setOpen] = useState<boolean>(false);
+    const navOpenerHandler = () => setOpen(prev => !prev);
+
     return (
         <StyledLayout>
-        
+            <Nav
+                key='nav bar'
+                open={open}
+                user={user}
+                onClose={navOpenerHandler}
+                isAuthenticated={isAuthenticated}
+            />
             {children}
+
         </StyledLayout>
     )
 }
