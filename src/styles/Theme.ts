@@ -1,3 +1,5 @@
+// eslint-disable-next-line
+import type from '@material-ui/lab/themeAugmentation';
 import { createTheme, Theme, ThemeOptions } from "@material-ui/core";
 
 const themeOptions: ThemeOptions = {

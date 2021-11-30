@@ -9,15 +9,27 @@ import {
     UserDispatchActions
 } from "store/types/usersTypes";
 
-interface UsersI {
+
+interface PaginationI {
+    page: number
+    per_page: number
+    total: number
+    total_pages: number
+}
+
+export interface UsersI extends PaginationI {
     users: Array<User>
-    isFetching: boolean,
+    isFetching?: boolean,
     error?: string
 }
 
 const intialState: UsersI = {
     users: [],
-    isFetching: false
+    isFetching: false,
+    page: 1,
+    per_page: 0,
+    total: 0,
+    total_pages: 0
 }
 
 const loadUserStart = (state: UsersI, action: LoadUsers): UsersI => {
@@ -42,11 +54,16 @@ const loadUsersFailed = (state: UsersI, action: LoadUsersFailed): UsersI => {
 
 const loadUsersSuccess = (state: UsersI, action: LoadUserSuccess): UsersI => {
 
-    const { users } = action.payload;
+    const { users, page, per_page, total, total_pages } = action.payload.viewData;
+
     const updatedState: UsersI = {
         ...state,
         isFetching: false,
-        users: [...state.users, ...users]
+        users: [...users],
+        page,
+        per_page,
+        total,
+        total_pages
     }
 
     return updatedState
